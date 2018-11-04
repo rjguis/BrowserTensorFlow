@@ -1,0 +1,32 @@
+<html>
+<head>
+    <title>PoseNet Example</title>
+    <meta charset="UTF-8"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tensorflow/0.10.3/tf.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/posenet"></script>
+</head>
+<body>
+    <div style = "text-align: center">
+        <h1>PoseNet example</h1>
+        <img id="bodyrecog" src="man.jpg" style="width:400px">
+        <pre id ="estimations"></pre>
+    </div>
+</body>
+<script>
+    var imageElement = document.getElementById('bodyrecog');
+    var imageScaleFactor = 0.5;
+    var outputStride = 16;
+    var flipHorizontal = false;
+    
+    posenet.load().then(function(net){
+        return net.estimateSinglePose(imageElement, imageScaleFactor, flipHorizontal, outputStride)
+    }).then(function(pose){
+        console.log(pose);
+
+        for (i in pose.keypoints){
+            document.getElementById('estimations').innerHTML += (pose.keypoints[i].part) + " Confidence:" + (pose.keypoints[i].score * 100).toFixed(2) + "%</br>";
+        }
+    })
+
+</script>
+</html>

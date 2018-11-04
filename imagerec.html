@@ -1,0 +1,18 @@
+<html>
+    <head>
+        <title>Simple image recognition</title>
+        <meta charset="UTF-8"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tensorflow/0.10.3/tf.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@0.1.1"></script>
+    </head>
+    <body onload="setup()">
+        <div style="text-align:center">
+            <h1> Simple image recognition</h1>
+            <video id="video" ></video>
+            
+            <pre id="predictions"></pre>
+            <canvas id="canvas" style="display:none"></canvas>
+        </div>
+    </body>
+    <script src="imagerec.js"></script>
+</html>
